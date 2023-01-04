@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "figma_layout_grid",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "figma_layout_grid (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "figma_layout_grid (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "grid_layout_example",
+            "cwd": "example/grid_layout_example",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "grid_layout_example (profile mode)",
+            "cwd": "example/grid_layout_example",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "grid_layout_example (release mode)",
+            "cwd": "example/grid_layout_example",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
