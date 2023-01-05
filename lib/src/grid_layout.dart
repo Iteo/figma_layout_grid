@@ -1,4 +1,4 @@
-import 'package:figma_layout_grid/src/grid_params.dart';
+import 'package:figma_layout_grid/src/params.dart';
 import 'package:figma_layout_grid/src/grid_stripes.dart';
 import 'package:flutter/material.dart';
 
