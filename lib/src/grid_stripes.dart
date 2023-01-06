@@ -72,6 +72,7 @@ class _DynamicStripes extends StatelessWidget {
             return _Stripe(
               size: params.size,
               axis: params.axis,
+              color: params.color,
             );
           }
         }
@@ -97,8 +98,6 @@ class _StaticStripes extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> columns = [];
 
-    final isRow = params.axis == Axis.vertical;
-
     for (int i = 0; i < params.count!; i++) {
       columns.add(
         Flexible(
@@ -110,20 +109,22 @@ class _StaticStripes extends StatelessWidget {
         ),
       );
       if (i < params.count! - 1) {
-        columns.add(_Stripe(
-          axis: params.axis,
-          size: double.infinity,
-        ));
+        columns.add(
+          _Stripe(
+            axis: params.axis,
+            size: params.gutter,
+          ),
+        );
       }
     }
 
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: isRow ? 0.0 : params.margin,
-        vertical: isRow ? params.margin : 0.0,
+        horizontal: params.axis == Axis.vertical ? 0.0 : params.margin,
+        vertical: params.axis == Axis.vertical ? params.margin : 0.0,
       ),
       child: Flex(
-        direction: isRow ? Axis.vertical : Axis.horizontal,
+        direction: params.axis,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: columns,
@@ -147,8 +148,8 @@ class _Stripe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: axis == Axis.vertical ? size : null,
-      width: axis == Axis.vertical ? null : size,
+      height: axis == Axis.vertical ? size : double.infinity,
+      width: axis == Axis.vertical ? double.infinity : size,
       child: color != null
           ? ColoredBox(
               color: color!,

@@ -19,16 +19,16 @@ class MyApp extends StatelessWidget {
       home: GridLayout(
         showGridColumns: GridConfig.showGridColumnsNotifier,
         showGridRows: GridConfig.showGridRowsNotifier,
-        // safeArea: true,
-        columnsParams: const ColumnsParams(
-          // count: 6,
-          margin: 16,
-          offset: 12,
-          width: 32,
-        ),
         rowsParams: const RowsParams(
-          margin: 0,
-          offset: 8,
+          margin: 30,
+          offset: 39,
+        ),
+        columnsParams: const ColumnsParams(
+          // offset: 39,
+          margin: 20,
+          width: 20,
+          gutter: 16,
+          count: 6,
         ),
         child: const MyHomePage(title: 'Figma layout grid'),
       ),

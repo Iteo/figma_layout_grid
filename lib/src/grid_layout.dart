@@ -16,8 +16,8 @@ class GridLayout extends StatelessWidget {
   final ValueNotifier<bool> showGridRows;
   final ValueNotifier<bool> showGridColumns;
 
-  final StripesParams columnsParams;
-  final StripesParams rowsParams;
+  final ColumnsParams columnsParams;
+  final RowsParams rowsParams;
 
   final bool safeArea;
 
