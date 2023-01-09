@@ -96,20 +96,30 @@ class _StaticStripes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> columns = [];
+    List<Widget> children = [];
 
     for (int i = 0; i < params.count!; i++) {
-      columns.add(
-        Flexible(
-          child: _Stripe(
+      if (params.arrangement == Arragement.stretch) {
+        children.add(
+          Flexible(
+            child: _Stripe(
+              axis: params.axis,
+              size: double.infinity,
+              color: params.color,
+            ),
+          ),
+        );
+      } else {
+        children.add(
+          _Stripe(
             axis: params.axis,
-            size: double.infinity,
+            size: params.size,
             color: params.color,
           ),
-        ),
-      );
+        );
+      }
       if (i < params.count! - 1) {
-        columns.add(
+        children.add(
           _Stripe(
             axis: params.axis,
             size: params.gutter,
@@ -119,17 +129,59 @@ class _StaticStripes extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: params.axis == Axis.vertical ? 0.0 : params.margin,
-        vertical: params.axis == Axis.vertical ? params.margin : 0.0,
-      ),
+      padding: _mapPadding(),
       child: Flex(
         direction: params.axis,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: columns,
+        mainAxisAlignment: _mapArrangement(),
+        children: children,
       ),
     );
+  }
+
+  MainAxisAlignment _mapArrangement() {
+    switch (params.arrangement) {
+      case Arragement.stretch:
+        return MainAxisAlignment.spaceBetween;
+      case Arragement.left:
+        return MainAxisAlignment.start;
+      case Arragement.right:
+        return MainAxisAlignment.end;
+      case Arragement.center:
+        return MainAxisAlignment.center;
+      case Arragement.top:
+        return MainAxisAlignment.start;
+      case Arragement.bottom:
+        return MainAxisAlignment.end;
+    }
+  }
+
+  EdgeInsets _mapPadding() {
+    switch (params.arrangement) {
+      case Arragement.stretch:
+        return EdgeInsets.symmetric(
+          horizontal: params.axis == Axis.vertical ? 0.0 : params.margin,
+          vertical: params.axis == Axis.vertical ? params.margin : 0.0,
+        );
+      case Arragement.left:
+        return EdgeInsets.only(
+          left: params.offset,
+        );
+      case Arragement.right:
+        return EdgeInsets.only(
+          right: params.offset,
+        );
+      case Arragement.center:
+        return EdgeInsets.zero;
+      case Arragement.top:
+        return EdgeInsets.only(
+          top: params.offset,
+        );
+      case Arragement.bottom:
+        return EdgeInsets.only(
+          bottom: params.offset,
+        );
+    }
   }
 }
 

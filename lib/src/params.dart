@@ -4,6 +4,8 @@ enum Arragement {
   stretch,
   left,
   right,
+  top,
+  bottom,
   center,
 }
 
