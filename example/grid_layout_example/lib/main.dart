@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       home: GridLayout(
         showGridColumns: GridConfig.showGridColumnsNotifier,
         showGridRows: GridConfig.showGridRowsNotifier,
-        // safeArea: true,
         rowsParams: const RowsParams(
           // margin: 30,
           offset: 0,
@@ -38,6 +37,10 @@ class MyApp extends StatelessWidget {
           count: 8,
           arrangement: Arragement.right,
         ),
+        showGrid: GridConfig.showGridNotifier,
+        gridParams: const GridParams(
+            // size: 24,
+            ),
         child: const MyHomePage(title: 'Figma layout grid'),
       ),
     );
@@ -89,6 +92,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   value: GridConfig.showGridColumnsNotifier.value,
                   onChanged: (value) {
                     GridConfig.showGridColumns = value;
+                    setState(() {});
+                  },
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Grid',
+                ),
+                Switch(
+                  value: GridConfig.showGridNotifier.value,
+                  onChanged: (value) {
+                    GridConfig.showGrid = value;
                     setState(() {});
                   },
                 ),
