@@ -9,4 +9,8 @@ class GridConfig {
   static final showGridRowsNotifier = ValueNotifier(true);
   static bool get showGridRows => showGridRowsNotifier.value;
   static set showGridRows(bool value) => showGridRowsNotifier.value = value;
+
+  static final showGridNotifier = ValueNotifier(true);
+  static bool get showGrid => showGridNotifier.value;
+  static set showGrid(bool value) => showGridNotifier.value = value;
 }

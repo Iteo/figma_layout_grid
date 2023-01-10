@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const _defaultColor = Color(0x1AFF0000);
+
 enum Arragement {
   stretch,
   left,
@@ -39,7 +41,7 @@ class RowsParams extends StripesParams {
     double margin = 0.0,
     double height = 8.0,
     double gutter = 8.0,
-    Color color = const Color(0x1AFF0000),
+    Color color = _defaultColor,
   }) : super(
           axis: Axis.vertical,
           count: count,
@@ -60,7 +62,7 @@ class ColumnsParams extends StripesParams {
     double margin = 0.0,
     double width = 16.0,
     double gutter = 16.0,
-    Color color = const Color(0x1AFF0000),
+    Color color = _defaultColor,
   }) : super(
           axis: Axis.horizontal,
           count: count,
@@ -71,4 +73,14 @@ class ColumnsParams extends StripesParams {
           gutter: gutter,
           color: color,
         );
+}
+
+class GridParams {
+  const GridParams({
+    this.size = 16.0,
+    this.color = _defaultColor,
+  });
+
+  final double size;
+  final Color color;
 }
