@@ -16,31 +16,24 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: GridLayout(
-        showGridColumns: GridConfig.showGridColumnsNotifier,
-        showGridRows: GridConfig.showGridRowsNotifier,
+      home: LayoutGrid(
+        showColumns: GridConfig.showColumnsNotifier,
+        showRows: GridConfig.showRowsNotifier,
+        showGrid: GridConfig.showGridNotifier,
         rowsParams: const RowsParams(
-          // margin: 30,
           offset: 0,
           count: 8,
           gutter: 8,
           height: 8,
           arrangement: Arragement.right,
-          // height: 18,
         ),
         columnsParams: const ColumnsParams(
-          // offset: 39,
-          // offset: 20,
           margin: 20,
           width: 8,
           gutter: 8,
           count: 8,
-          arrangement: Arragement.right,
+          arrangement: Arragement.bottom,
         ),
-        showGrid: GridConfig.showGridNotifier,
-        gridParams: const GridParams(
-            // size: 24,
-            ),
         child: const MyHomePage(title: 'Figma layout grid'),
       ),
     );
@@ -74,9 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Rows',
                 ),
                 Switch(
-                  value: GridConfig.showGridRowsNotifier.value,
+                  value: GridConfig.showRowsNotifier.value,
                   onChanged: (value) {
-                    GridConfig.showGridRows = value;
+                    GridConfig.showRows = value;
                     setState(() {});
                   },
                 ),
@@ -89,9 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Columns',
                 ),
                 Switch(
-                  value: GridConfig.showGridColumnsNotifier.value,
+                  value: GridConfig.showColumnsNotifier.value,
                   onChanged: (value) {
-                    GridConfig.showGridColumns = value;
+                    GridConfig.showColumns = value;
                     setState(() {});
                   },
                 ),

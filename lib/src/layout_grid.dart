@@ -3,12 +3,12 @@ import 'package:figma_layout_grid/src/params.dart';
 import 'package:figma_layout_grid/src/grid_stripes.dart';
 import 'package:flutter/material.dart';
 
-class GridLayout extends StatelessWidget {
-  const GridLayout({
+class LayoutGrid extends StatelessWidget {
+  const LayoutGrid({
     Key? key,
     required this.child,
-    required this.showGridRows,
-    required this.showGridColumns,
+    required this.showRows,
+    required this.showColumns,
     required this.showGrid,
     this.columnsParams = const ColumnsParams(),
     this.rowsParams = const RowsParams(),
@@ -16,8 +16,8 @@ class GridLayout extends StatelessWidget {
     this.safeArea = false,
   }) : super(key: key);
 
-  final ValueNotifier<bool> showGridRows;
-  final ValueNotifier<bool> showGridColumns;
+  final ValueNotifier<bool> showRows;
+  final ValueNotifier<bool> showColumns;
   final ValueNotifier<bool> showGrid;
 
   final ColumnsParams columnsParams;
@@ -38,13 +38,13 @@ class GridLayout extends StatelessWidget {
           ),
           SafeArea(
             child: GridStripes(
-              visible: showGridRows,
+              visible: showRows,
               params: rowsParams,
             ),
           ),
           SafeArea(
             child: GridStripes(
-              visible: showGridColumns,
+              visible: showColumns,
               params: columnsParams,
             ),
           ),
@@ -63,11 +63,11 @@ class GridLayout extends StatelessWidget {
             child: child,
           ),
           GridStripes(
-            visible: showGridRows,
+            visible: showRows,
             params: rowsParams,
           ),
           GridStripes(
-            visible: showGridColumns,
+            visible: showColumns,
             params: columnsParams,
           ),
           Grid(

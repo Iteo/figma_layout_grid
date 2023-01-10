@@ -4,10 +4,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class Grid extends HookWidget {
   const Grid({
-    super.key,
+    Key? key,
     required this.visible,
     required this.params,
-  });
+  }) : super(key: key);
 
   final ValueNotifier<bool> visible;
   final GridParams params;
