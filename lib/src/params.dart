@@ -2,77 +2,58 @@ import 'package:flutter/material.dart';
 
 const _defaultColor = Color(0x1AFF0000);
 
-enum Arragement {
+enum RowsArragement {
   stretch,
-  left,
-  right,
   top,
   bottom,
   center,
 }
 
-abstract class StripesParams {
-  const StripesParams({
-    required this.axis,
-    required this.gutter,
-    required this.count,
-    required this.arrangement,
-    required this.offset,
-    required this.margin,
-    required this.size,
-    required this.color,
+enum ColumnsArragement {
+  stretch,
+  left,
+  right,
+  center,
+}
+
+class RowsParams {
+  const RowsParams({
+    this.gutter = 8.0,
+    this.count,
+    this.arrangement = RowsArragement.stretch,
+    this.offset = 0.0,
+    this.margin = 0.0,
+    this.height = 8.0,
+    this.color = _defaultColor,
   });
 
-  final Axis axis;
   final int? count;
-  final Arragement arrangement;
+  final RowsArragement arrangement;
   final double offset;
   final double margin;
-  final double size;
+  final double height;
   final double gutter;
   final Color color;
 }
 
-class RowsParams extends StripesParams {
-  const RowsParams({
-    int? count,
-    Arragement arrangement = Arragement.stretch,
-    double offset = 0.0,
-    double margin = 0.0,
-    double height = 8.0,
-    double gutter = 8.0,
-    Color color = _defaultColor,
-  }) : super(
-          axis: Axis.vertical,
-          count: count,
-          arrangement: arrangement,
-          offset: offset,
-          margin: margin,
-          size: height,
-          gutter: gutter,
-          color: color,
-        );
-}
-
-class ColumnsParams extends StripesParams {
+class ColumnsParams {
   const ColumnsParams({
-    int? count,
-    Arragement arrangement = Arragement.stretch,
-    double offset = 0.0,
-    double margin = 0.0,
-    double width = 16.0,
-    double gutter = 16.0,
-    Color color = _defaultColor,
-  }) : super(
-          axis: Axis.horizontal,
-          count: count,
-          arrangement: arrangement,
-          offset: offset,
-          margin: margin,
-          size: width,
-          gutter: gutter,
-          color: color,
-        );
+    this.gutter = 16.0,
+    this.count = 6,
+    this.arrangement = ColumnsArragement.stretch,
+    this.offset = 0.0,
+    this.margin = 0.0,
+    this.width = 16.0,
+    this.color = _defaultColor,
+  });
+
+  final int? count;
+  final ColumnsArragement arrangement;
+  final double offset;
+  final double margin;
+  final double width;
+  final double gutter;
+  final Color color;
 }
 
 class GridParams {

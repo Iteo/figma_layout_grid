@@ -9,14 +9,12 @@ class Grid extends HookWidget {
     required this.params,
   }) : super(key: key);
 
-  final ValueNotifier<bool> visible;
+  final bool visible;
   final GridParams params;
 
   @override
   Widget build(BuildContext context) {
-    final showGrid = useListenable(visible).value;
-
-    if (!showGrid) {
+    if (!visible) {
       return const SizedBox.shrink();
     }
 

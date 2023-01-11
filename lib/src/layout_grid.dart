@@ -1,9 +1,11 @@
+import 'package:figma_layout_grid/src/columns.dart';
 import 'package:figma_layout_grid/src/grid.dart';
 import 'package:figma_layout_grid/src/params.dart';
-import 'package:figma_layout_grid/src/grid_stripes.dart';
+import 'package:figma_layout_grid/src/rows.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class LayoutGrid extends StatelessWidget {
+class LayoutGrid extends HookWidget {
   const LayoutGrid({
     Key? key,
     required this.child,
@@ -30,52 +32,46 @@ class LayoutGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (safeArea) {
-      return Stack(
-        children: [
-          SizedBox.expand(
-            child: child,
-          ),
-          SafeArea(
-            child: GridStripes(
-              visible: showRows,
-              params: rowsParams,
-            ),
-          ),
-          SafeArea(
-            child: GridStripes(
-              visible: showColumns,
-              params: columnsParams,
-            ),
-          ),
-          SafeArea(
-            child: Grid(
-              visible: showGrid,
-              params: gridParams,
-            ),
-          ),
-        ],
-      );
-    } else {
-      return Stack(
-        children: [
-          SizedBox.expand(
-            child: child,
-          ),
-          GridStripes(
-            visible: showRows,
+    final visibleRows = useListenable(showRows).value;
+    final visibleColumns = useListenable(showColumns).value;
+    final visibleGrid = useListenable(showGrid).value;
+
+    return Stack(
+      children: [
+        SizedBox.expand(
+          child: child,
+        ),
+        SafeArea(
+          left: safeArea,
+          bottom: safeArea,
+          top: safeArea,
+          right: safeArea,
+          child: Rows(
+            visible: visibleRows,
             params: rowsParams,
           ),
-          GridStripes(
-            visible: showColumns,
+        ),
+        SafeArea(
+          left: safeArea,
+          bottom: safeArea,
+          top: safeArea,
+          right: safeArea,
+          child: Columns(
+            visible: visibleColumns,
             params: columnsParams,
           ),
-          Grid(
-            visible: showGrid,
+        ),
+        SafeArea(
+          left: safeArea,
+          bottom: safeArea,
+          top: safeArea,
+          right: safeArea,
+          child: Grid(
+            visible: visibleGrid,
             params: gridParams,
           ),
-        ],
-      );
-    }
+        ),
+      ],
+    );
   }
 }
