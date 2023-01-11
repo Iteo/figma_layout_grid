@@ -2,34 +2,32 @@ import 'package:figma_layout_grid/src/params.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class GridStripes extends HookWidget {
-  const GridStripes({
+class Columns extends HookWidget {
+  const Columns({
     Key? key,
     required this.visible,
     required this.params,
   }) : super(key: key);
 
-  final ValueNotifier<bool> visible;
-  final StripesParams params;
+  final bool visible;
+  final ColumnsParams params;
 
   @override
   Widget build(BuildContext context) {
-    final showStripes = useListenable(visible).value;
-
     final bool countSpecified =
         params.count != null ? params.count! > 0 : false;
 
-    if (!showStripes) {
+    if (!visible) {
       return const SizedBox.shrink();
     }
 
     return SizedBox.expand(
       child: IgnorePointer(
         child: countSpecified
-            ? _StaticStripes(
+            ? _SpecifiedCountColumns(
                 params: params,
               )
-            : _DynamicStripes(
+            : _DynamicColumns(
                 params: params,
               ),
       ),
@@ -37,92 +35,85 @@ class GridStripes extends HookWidget {
   }
 }
 
-class _DynamicStripes extends StatelessWidget {
-  const _DynamicStripes({
+class _DynamicColumns extends StatelessWidget {
+  const _DynamicColumns({
     Key? key,
     required this.params,
   }) : super(key: key);
 
-  final StripesParams params;
+  final ColumnsParams params;
 
   @override
   Widget build(BuildContext context) {
     final hasOffset = params.offset > 0;
 
     return ListView.builder(
-      scrollDirection: params.axis,
+      scrollDirection: Axis.horizontal,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         if (index == 0 && hasOffset) {
-          return _Stripe(
-            size: params.offset,
-            axis: params.axis,
+          return _Column(
+            width: params.offset,
           );
         }
         if (hasOffset) {
           if (index.isOdd) {
-            return _Stripe(
-              size: params.size,
-              axis: params.axis,
+            return _Column(
+              width: params.width,
               color: params.color,
             );
           }
         } else {
           if (index.isEven) {
-            return _Stripe(
-              size: params.size,
-              axis: params.axis,
+            return _Column(
+              width: params.width,
               color: params.color,
             );
           }
         }
 
-        return _Stripe(
-          size: params.gutter,
-          axis: params.axis,
+        return _Column(
+          width: params.gutter,
         );
       },
     );
   }
 }
 
-class _StaticStripes extends StatelessWidget {
-  const _StaticStripes({
+class _SpecifiedCountColumns extends StatelessWidget {
+  const _SpecifiedCountColumns({
     Key? key,
     required this.params,
   }) : super(key: key);
 
-  final StripesParams params;
+  final ColumnsParams params;
 
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
 
     for (int i = 0; i < params.count!; i++) {
-      if (params.arrangement == Arragement.stretch) {
+      if (params.arrangement == ColumnsArragement.stretch) {
         children.add(
           Flexible(
-            child: _Stripe(
-              axis: params.axis,
-              size: double.infinity,
+            child: _Column(
+              width: double.infinity,
               color: params.color,
             ),
           ),
         );
       } else {
         children.add(
-          _Stripe(
-            axis: params.axis,
-            size: params.size,
+          _Column(
+            width: params.width,
             color: params.color,
           ),
         );
       }
       if (i < params.count! - 1) {
         children.add(
-          _Stripe(
-            axis: params.axis,
-            size: params.gutter,
+          _Column(
+            width: params.gutter,
           ),
         );
       }
@@ -131,7 +122,7 @@ class _StaticStripes extends StatelessWidget {
     return Padding(
       padding: _mapPadding(),
       child: Flex(
-        direction: params.axis,
+        direction: Axis.horizontal,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: _mapArrangement(),
         children: children,
@@ -141,72 +132,53 @@ class _StaticStripes extends StatelessWidget {
 
   MainAxisAlignment _mapArrangement() {
     switch (params.arrangement) {
-      case Arragement.stretch:
+      case ColumnsArragement.stretch:
         return MainAxisAlignment.spaceBetween;
-      case Arragement.left:
+      case ColumnsArragement.left:
         return MainAxisAlignment.start;
-      case Arragement.right:
+      case ColumnsArragement.right:
         return MainAxisAlignment.end;
-      case Arragement.center:
+      case ColumnsArragement.center:
         return MainAxisAlignment.center;
-      case Arragement.top:
-        return MainAxisAlignment.start;
-      case Arragement.bottom:
-        return MainAxisAlignment.end;
     }
   }
 
   EdgeInsets _mapPadding() {
     switch (params.arrangement) {
-      case Arragement.stretch:
+      case ColumnsArragement.stretch:
         return EdgeInsets.symmetric(
-          horizontal: params.axis == Axis.vertical ? 0.0 : params.margin,
-          vertical: params.axis == Axis.vertical ? params.margin : 0.0,
+          horizontal: params.margin,
         );
-      case Arragement.left:
+      case ColumnsArragement.left:
         return EdgeInsets.only(
           left: params.offset,
         );
-      case Arragement.right:
+      case ColumnsArragement.right:
         return EdgeInsets.only(
           right: params.offset,
         );
-      case Arragement.center:
+      case ColumnsArragement.center:
         return EdgeInsets.zero;
-      case Arragement.top:
-        return EdgeInsets.only(
-          top: params.offset,
-        );
-      case Arragement.bottom:
-        return EdgeInsets.only(
-          bottom: params.offset,
-        );
     }
   }
 }
 
-class _Stripe extends StatelessWidget {
-  const _Stripe({
+class _Column extends StatelessWidget {
+  const _Column({
     Key? key,
-    required this.axis,
-    required this.size,
+    required this.width,
     this.color,
   }) : super(key: key);
 
-  final Axis axis;
-  final double size;
+  final double width;
   final Color? color;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: axis == Axis.vertical ? size : double.infinity,
-      width: axis == Axis.vertical ? double.infinity : size,
-      child: color != null
-          ? ColoredBox(
-              color: color!,
-            )
-          : null,
+    return Container(
+      height: double.infinity,
+      width: width,
+      color: color,
     );
   }
 }
