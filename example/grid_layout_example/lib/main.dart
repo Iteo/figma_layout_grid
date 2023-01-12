@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -20,30 +19,17 @@ class MyApp extends StatelessWidget {
         showColumns: GridConfig.showColumnsNotifier,
         showRows: GridConfig.showRowsNotifier,
         showGrid: GridConfig.showGridNotifier,
-        rowsParams: const RowsParams(
-          offset: 0,
-          count: 8,
-          gutter: 8,
-          height: 8,
-          arrangement: RowsArragement.bottom,
-        ),
-        columnsParams: const ColumnsParams(
-          margin: 20,
-          width: 8,
-          gutter: 8,
-          count: 8,
-          arrangement: ColumnsArragement.left,
-        ),
-        child: const MyHomePage(title: 'Figma layout grid'),
+        columnsParams: ColumnsParams(),
+        gridParams: GridParams(size: 32),
+        safeArea: true,
+        child: const MyHomePage(),
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -54,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text('figma_layout_grid'),
       ),
       body: Center(
         child: Column(

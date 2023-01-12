@@ -20,45 +20,11 @@ class Grid extends HookWidget {
 
     return SizedBox.expand(
       child: IgnorePointer(
-        child: Stack(
-          children: [
-            ListView.builder(
-              scrollDirection: Axis.vertical,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                if (index.isOdd) {
-                  return ColoredBox(
-                    color: params.color,
-                    child: const SizedBox(
-                      height: 1,
-                    ),
-                  );
-                } else {
-                  return SizedBox(
-                    height: params.size,
-                  );
-                }
-              },
-            ),
-            ListView.builder(
-              scrollDirection: Axis.horizontal,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                if (index.isOdd) {
-                  return ColoredBox(
-                    color: params.color,
-                    child: const SizedBox(
-                      width: 1,
-                    ),
-                  );
-                } else {
-                  return SizedBox(
-                    width: params.size,
-                  );
-                }
-              },
-            )
-          ],
+        child: GridPaper(
+          color: params.color,
+          divisions: 1,
+          subdivisions: 1,
+          interval: params.size,
         ),
       ),
     );
