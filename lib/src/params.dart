@@ -39,7 +39,7 @@ class RowsParams {
 class ColumnsParams {
   const ColumnsParams({
     this.gutter = 16.0,
-    this.count = 6,
+    this.count,
     this.arrangement = ColumnsArragement.stretch,
     this.offset = 0.0,
     this.margin = 0.0,
@@ -58,7 +58,7 @@ class ColumnsParams {
 
 class GridParams {
   const GridParams({
-    this.size = 16.0,
+    this.size = 32.0,
     this.color = _defaultColor,
   });
 

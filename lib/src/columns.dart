@@ -51,6 +51,7 @@ class _DynamicColumns extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
+        print(index);
         if (index == 0 && hasOffset) {
           return _Column(
             width: params.offset,
