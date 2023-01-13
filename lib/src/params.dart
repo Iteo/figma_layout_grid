@@ -16,6 +16,20 @@ enum ColumnsArragement {
   center,
 }
 
+class SafeAreaParams {
+  const SafeAreaParams({
+    this.top = false,
+    this.bottom = false,
+    this.left = false,
+    this.right = false,
+  });
+
+  final bool top;
+  final bool bottom;
+  final bool left;
+  final bool right;
+}
+
 class RowsParams {
   const RowsParams({
     this.gutter = 8.0,
@@ -25,6 +39,7 @@ class RowsParams {
     this.margin = 0.0,
     this.height = 8.0,
     this.color = _defaultColor,
+    this.safeAreaParams = const SafeAreaParams(),
   });
 
   final int? count;
@@ -34,6 +49,7 @@ class RowsParams {
   final double height;
   final double gutter;
   final Color color;
+  final SafeAreaParams safeAreaParams;
 }
 
 class ColumnsParams {
@@ -45,6 +61,7 @@ class ColumnsParams {
     this.margin = 0.0,
     this.width = 16.0,
     this.color = _defaultColor,
+    this.safeAreaParams = const SafeAreaParams(),
   });
 
   final int? count;
@@ -54,14 +71,17 @@ class ColumnsParams {
   final double width;
   final double gutter;
   final Color color;
+  final SafeAreaParams safeAreaParams;
 }
 
 class GridParams {
   const GridParams({
     this.size = 32.0,
     this.color = _defaultColor,
+    this.safeAreaParams = const SafeAreaParams(),
   });
 
   final double size;
   final Color color;
+  final SafeAreaParams safeAreaParams;
 }
