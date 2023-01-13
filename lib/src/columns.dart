@@ -49,35 +49,7 @@ class _DynamicColumns extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-<<<<<<< HEAD
         return _buildItem(index, hasOffset);
-=======
-        print(index);
-        if (index == 0 && hasOffset) {
-          return _Column(
-            width: params.offset,
-          );
-        }
-        if (hasOffset) {
-          if (index.isOdd) {
-            return _Column(
-              width: params.width,
-              color: params.color,
-            );
-          }
-        } else {
-          if (index.isEven) {
-            return _Column(
-              width: params.width,
-              color: params.color,
-            );
-          }
-        }
-
-        return _Column(
-          width: params.gutter,
-        );
->>>>>>> 2decc26 (feat: Support web and destkop)
       },
     );
   }

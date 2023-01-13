@@ -31,6 +31,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return LayoutGrid(
       gridParams: const GridParams(size: 32),
+      rowsParams: const RowsParams(
+        safeAreaParams: SafeAreaParams(
+          bottom: true,
+          top: true,
+        ),
+      ),
+      columnsParams: const ColumnsParams(
+        safeAreaParams: SafeAreaParams(
+          right: true,
+          left: true,
+          top: true,
+        ),
+      ),
       builder: (context) => Scaffold(
         appBar: AppBar(
           title: const Text('figma layout grid'),
