@@ -1,4 +1,3 @@
-import 'package:layout_grid_example/grid_config.dart';
 import 'package:figma_layout_grid/figma_layout_grid.dart';
 import 'package:flutter/material.dart';
 
@@ -15,15 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LayoutGrid(
-        showColumns: GridConfig.showColumnsNotifier,
-        showRows: GridConfig.showRowsNotifier,
-        showGrid: GridConfig.showGridNotifier,
-        columnsParams: ColumnsParams(),
-        gridParams: GridParams(size: 32),
-        safeArea: true,
-        child: const MyHomePage(),
-      ),
+      home: const MyHomePage(),
     );
   }
 }
@@ -38,60 +29,63 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('figma_layout_grid'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Rows',
-                ),
-                Switch(
-                  value: GridConfig.showRowsNotifier.value,
-                  onChanged: (value) {
-                    GridConfig.showRows = value;
-                    setState(() {});
-                  },
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Columns',
-                ),
-                Switch(
-                  value: GridConfig.showColumnsNotifier.value,
-                  onChanged: (value) {
-                    GridConfig.showColumns = value;
-                    setState(() {});
-                  },
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Grid',
-                ),
-                Switch(
-                  value: GridConfig.showGridNotifier.value,
-                  onChanged: (value) {
-                    GridConfig.showGrid = value;
-                    setState(() {});
-                  },
-                ),
-              ],
-            ),
-          ],
+    return LayoutGrid(
+      gridParams: const GridParams(size: 32),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('figma layout grid'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Rows',
+                  ),
+                  Switch(
+                    value: LayoutGridNotifier.of(context).visibleRows,
+                    onChanged: (value) {
+                      LayoutGridNotifier.of(context).toggleRows();
+                      setState(() {});
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Columns',
+                  ),
+                  Switch(
+                    value: LayoutGridNotifier.of(context).visibleColumns,
+                    onChanged: (value) {
+                      LayoutGridNotifier.of(context).toggleColumns();
+                      setState(() {});
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Grid',
+                  ),
+                  Switch(
+                    value: LayoutGridNotifier.of(context).visibleGrid,
+                    onChanged: (value) {
+                      LayoutGridNotifier.of(context).toggleGrid();
+                      setState(() {});
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

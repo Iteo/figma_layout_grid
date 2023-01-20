@@ -1,8 +1,7 @@
 import 'package:figma_layout_grid/figma_layout_grid.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
-class Grid extends HookWidget {
+class Grid extends StatelessWidget {
   const Grid({
     Key? key,
     required this.visible,
