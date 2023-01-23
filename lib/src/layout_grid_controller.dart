@@ -54,22 +54,29 @@ class LayoutGridController extends ChangeNotifier {
     _visibleGrid = !_visibleGrid;
     notifyListeners();
   }
+
+  static LayoutGridController of(BuildContext context) {
+    final controller = context
+        .dependOnInheritedWidgetOfExactType<LayoutGridScope>()
+        ?.controller;
+    if (controller != null) {
+      return controller;
+    }
+    throw UnimplementedError();
+  }
 }
 
-class LayoutGridNotifier extends InheritedNotifier<LayoutGridController> {
-  const LayoutGridNotifier({
-    Key? key,
-    required LayoutGridController controller,
-    required Widget child,
-  }) : super(
-          key: key,
-          notifier: controller,
-          child: child,
-        );
+class LayoutGridScope extends InheritedWidget {
+  const LayoutGridScope({
+    required this.controller,
+    required super.child,
+    super.key,
+  });
 
-  static LayoutGridController of(BuildContext context) =>
-      context
-          .dependOnInheritedWidgetOfExactType<LayoutGridNotifier>()
-          ?.notifier ??
-      LayoutGridController();
+  final LayoutGridController controller;
+
+  @override
+  bool updateShouldNotify(LayoutGridScope oldWidget) {
+    return controller != oldWidget.controller;
+  }
 }

@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return LayoutGrid(
       gridParams: const GridParams(size: 32),
-      child: Scaffold(
+      builder: (context) => Scaffold(
         appBar: AppBar(
           title: const Text('figma layout grid'),
         ),
@@ -46,9 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     'Rows',
                   ),
                   Switch(
-                    value: LayoutGridNotifier.of(context).visibleRows,
+                    value: LayoutGridController.of(context).visibleRows,
                     onChanged: (value) {
-                      LayoutGridNotifier.of(context).toggleRows();
+                      LayoutGridController.of(context).toggleRows();
                       setState(() {});
                     },
                   ),
@@ -61,9 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     'Columns',
                   ),
                   Switch(
-                    value: LayoutGridNotifier.of(context).visibleColumns,
+                    value: LayoutGridController.of(context).visibleColumns,
                     onChanged: (value) {
-                      LayoutGridNotifier.of(context).toggleColumns();
+                      LayoutGridController.of(context).toggleColumns();
                       setState(() {});
                     },
                   ),
@@ -76,9 +76,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     'Grid',
                   ),
                   Switch(
-                    value: LayoutGridNotifier.of(context).visibleGrid,
+                    value: LayoutGridController.of(context).visibleGrid,
                     onChanged: (value) {
-                      LayoutGridNotifier.of(context).toggleGrid();
+                      LayoutGridController.of(context).toggleGrid();
                       setState(() {});
                     },
                   ),

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class LayoutGrid extends StatefulWidget {
   const LayoutGrid({
     Key? key,
-    required this.child,
+    required this.builder,
     this.columnsParams = const ColumnsParams(),
     this.rowsParams = const RowsParams(),
     this.gridParams = const GridParams(),
@@ -21,7 +21,7 @@ class LayoutGrid extends StatefulWidget {
 
   final bool safeArea;
 
-  final Widget child;
+  final Widget Function(BuildContext context) builder;
 
   @override
   State<LayoutGrid> createState() => _LayoutGridState();
@@ -32,11 +32,11 @@ class _LayoutGridState extends State<LayoutGrid> {
 
   @override
   void initState() {
+    super.initState();
     controller = LayoutGridController();
     controller.addListener(() {
       setState(() {});
     });
-    super.initState();
   }
 
   @override
@@ -47,14 +47,14 @@ class _LayoutGridState extends State<LayoutGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutGridNotifier(
+    return LayoutGridScope(
       controller: controller,
       child: Builder(
         builder: (innerContext) {
           return Stack(
             children: [
               SizedBox.expand(
-                child: widget.child,
+                child: widget.builder(innerContext),
               ),
               SafeArea(
                 left: widget.safeArea,
@@ -62,7 +62,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.safeArea,
                 right: widget.safeArea,
                 child: Rows(
-                  visible: LayoutGridNotifier.of(innerContext).visibleRows,
+                  visible: LayoutGridController.of(innerContext).visibleRows,
                   params: widget.rowsParams,
                 ),
               ),
@@ -72,7 +72,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.safeArea,
                 right: widget.safeArea,
                 child: Columns(
-                  visible: LayoutGridNotifier.of(innerContext).visibleColumns,
+                  visible: LayoutGridController.of(innerContext).visibleColumns,
                   params: widget.columnsParams,
                 ),
               ),
@@ -82,7 +82,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.safeArea,
                 right: widget.safeArea,
                 child: Grid(
-                  visible: LayoutGridNotifier.of(innerContext).visibleGrid,
+                  visible: LayoutGridController.of(innerContext).visibleGrid,
                   params: widget.gridParams,
                 ),
               ),
