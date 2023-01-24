@@ -1,9 +1,11 @@
 name: figma_layout_grid
-description: Visual aid grid system
+description: Visual aid grid system that supports Figma's layout grid features
 version: 0.0.1
+repository: https://github.com/Iteo/figma_layout_grid
+homepage: https://github.com/Iteo/figma_layout_grid
 
 environment:
-  sdk: '>=2.18.6 <3.0.0'
+  sdk: '>=2.17.1 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
