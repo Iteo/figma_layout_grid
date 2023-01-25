@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 
 class LayoutGrid extends StatefulWidget {
   const LayoutGrid({
-    Key? key,
+    super.key,
     required this.builder,
     this.columnsParams = const ColumnsParams(),
     this.rowsParams = const RowsParams(),
     this.gridParams = const GridParams(),
     this.safeArea = false,
-  }) : super(key: key);
+  });
 
   final ColumnsParams columnsParams;
   final RowsParams rowsParams;

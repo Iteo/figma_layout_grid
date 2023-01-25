@@ -47,9 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Switch(
                     value: LayoutGridController.of(context).visibleRows,
-                    onChanged: (value) {
+                    onChanged: (_) {
                       LayoutGridController.of(context).toggleRows();
-                      setState(() {});
                     },
                   ),
                 ],
@@ -62,9 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Switch(
                     value: LayoutGridController.of(context).visibleColumns,
-                    onChanged: (value) {
+                    onChanged: (_) {
                       LayoutGridController.of(context).toggleColumns();
-                      setState(() {});
                     },
                   ),
                 ],
@@ -77,9 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Switch(
                     value: LayoutGridController.of(context).visibleGrid,
-                    onChanged: (value) {
+                    onChanged: (_) {
                       LayoutGridController.of(context).toggleGrid();
-                      setState(() {});
                     },
                   ),
                 ],

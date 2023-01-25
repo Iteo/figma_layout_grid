@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class Rows extends StatelessWidget {
   const Rows({
-    Key? key,
+    super.key,
     required this.visible,
     required this.params,
-  }) : super(key: key);
+  });
 
   final bool visible;
   final RowsParams params;
@@ -50,31 +50,35 @@ class _DynamicRows extends StatelessWidget {
       scrollDirection: Axis.vertical,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        if (index == 0 && hasOffset) {
-          return _Row(
-            height: params.offset,
-          );
-        }
-        if (hasOffset) {
-          if (index.isOdd) {
-            return _Row(
-              height: params.height,
-              color: params.color,
-            );
-          }
-        } else {
-          if (index.isEven) {
-            return _Row(
-              height: params.height,
-              color: params.color,
-            );
-          }
-        }
-
-        return _Row(
-          height: params.gutter,
-        );
+        return _buildItem(index, hasOffset);
       },
+    );
+  }
+
+  _Row _buildItem(int index, bool hasOffset) {
+    if (index == 0 && hasOffset) {
+      return _Row(
+        height: params.offset,
+      );
+    }
+    if (hasOffset) {
+      if (index.isOdd) {
+        return _Row(
+          height: params.height,
+          color: params.color,
+        );
+      }
+    } else {
+      if (index.isEven) {
+        return _Row(
+          height: params.height,
+          color: params.color,
+        );
+      }
+    }
+
+    return _Row(
+      height: params.gutter,
     );
   }
 }
@@ -120,8 +124,7 @@ class _SpecifiedCountRows extends StatelessWidget {
 
     return Padding(
       padding: _mapPadding(),
-      child: Flex(
-        direction: Axis.vertical,
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: _mapArrangement(),
         children: children,
@@ -164,10 +167,9 @@ class _SpecifiedCountRows extends StatelessWidget {
 
 class _Row extends StatelessWidget {
   const _Row({
-    Key? key,
     required this.height,
     this.color,
-  }) : super(key: key);
+  });
 
   final double height;
   final Color? color;

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class Grid extends StatelessWidget {
   const Grid({
-    Key? key,
+    super.key,
     required this.visible,
     required this.params,
-  }) : super(key: key);
+  });
 
   final bool visible;
   final GridParams params;

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class Columns extends StatelessWidget {
   const Columns({
-    Key? key,
+    super.key,
     required this.visible,
     required this.params,
-  }) : super(key: key);
+  });
 
   final bool visible;
   final ColumnsParams params;
@@ -36,9 +36,8 @@ class Columns extends StatelessWidget {
 
 class _DynamicColumns extends StatelessWidget {
   const _DynamicColumns({
-    Key? key,
     required this.params,
-  }) : super(key: key);
+  });
 
   final ColumnsParams params;
 
@@ -50,40 +49,43 @@ class _DynamicColumns extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        if (index == 0 && hasOffset) {
-          return _Column(
-            width: params.offset,
-          );
-        }
-        if (hasOffset) {
-          if (index.isOdd) {
-            return _Column(
-              width: params.width,
-              color: params.color,
-            );
-          }
-        } else {
-          if (index.isEven) {
-            return _Column(
-              width: params.width,
-              color: params.color,
-            );
-          }
-        }
-
-        return _Column(
-          width: params.gutter,
-        );
+        return _buildItem(index, hasOffset);
       },
+    );
+  }
+
+  _Column _buildItem(int index, bool hasOffset) {
+    if (index == 0 && hasOffset) {
+      return _Column(
+        width: params.offset,
+      );
+    }
+    if (hasOffset) {
+      if (index.isOdd) {
+        return _Column(
+          width: params.width,
+          color: params.color,
+        );
+      }
+    } else {
+      if (index.isEven) {
+        return _Column(
+          width: params.width,
+          color: params.color,
+        );
+      }
+    }
+
+    return _Column(
+      width: params.gutter,
     );
   }
 }
 
 class _SpecifiedCountColumns extends StatelessWidget {
   const _SpecifiedCountColumns({
-    Key? key,
     required this.params,
-  }) : super(key: key);
+  });
 
   final ColumnsParams params;
 
@@ -120,8 +122,7 @@ class _SpecifiedCountColumns extends StatelessWidget {
 
     return Padding(
       padding: _mapPadding(),
-      child: Flex(
-        direction: Axis.horizontal,
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: _mapArrangement(),
         children: children,
@@ -164,10 +165,9 @@ class _SpecifiedCountColumns extends StatelessWidget {
 
 class _Column extends StatelessWidget {
   const _Column({
-    Key? key,
     required this.width,
     this.color,
-  }) : super(key: key);
+  });
 
   final double width;
   final Color? color;

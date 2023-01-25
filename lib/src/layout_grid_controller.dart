@@ -68,9 +68,9 @@ class LayoutGridController extends ChangeNotifier {
 
 class LayoutGridScope extends InheritedWidget {
   const LayoutGridScope({
+    super.key,
     required this.controller,
     required super.child,
-    super.key,
   });
 
   final LayoutGridController controller;
