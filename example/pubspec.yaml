@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter 
   figma_layout_grid:
-    path: ../../
+    path: ../
   cupertino_icons: ^1.0.2
 
 dev_dependencies:

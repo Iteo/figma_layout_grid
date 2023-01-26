@@ -1,6 +1,5 @@
 import 'package:figma_layout_grid/figma_layout_grid.dart';
 import 'package:flutter/material.dart';
-import 'package:layout_grid_example/grid_config.dart';
 
 void main() {
   runApp(const MyApp());
