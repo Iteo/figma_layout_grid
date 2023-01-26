@@ -1,4 +1,3 @@
-import 'package:layout_grid_example/grid_config.dart';
 import 'package:figma_layout_grid/figma_layout_grid.dart';
 import 'package:flutter/material.dart';
 
@@ -12,23 +11,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: GridLayout(
-        showGridColumns: GridConfig.showGridColumnsNotifier,
-        showGridRows: GridConfig.showGridRowsNotifier,
-        child: const MyHomePage(title: 'Figma layout grid'),
-      ),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -37,45 +29,60 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Rows',
-                ),
-                Switch(
-                  value: GridConfig.showGridRowsNotifier.value,
-                  onChanged: (value) {
-                    GridConfig.showGridRows = value;
-                    setState(() {});
-                  },
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Columns',
-                ),
-                Switch(
-                  value: GridConfig.showGridColumnsNotifier.value,
-                  onChanged: (value) {
-                    GridConfig.showGridColumns = value;
-                    setState(() {});
-                  },
-                ),
-              ],
-            ),
-          ],
+    return LayoutGrid(
+      gridParams: const GridParams(size: 32),
+      builder: (context) => Scaffold(
+        appBar: AppBar(
+          title: const Text('figma layout grid'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Rows',
+                  ),
+                  Switch(
+                    value: LayoutGridController.of(context).visibleRows,
+                    onChanged: (_) {
+                      LayoutGridController.of(context).toggleRows();
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Columns',
+                  ),
+                  Switch(
+                    value: LayoutGridController.of(context).visibleColumns,
+                    onChanged: (_) {
+                      LayoutGridController.of(context).toggleColumns();
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Grid',
+                  ),
+                  Switch(
+                    value: LayoutGridController.of(context).visibleGrid,
+                    onChanged: (_) {
+                      LayoutGridController.of(context).toggleGrid();
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
