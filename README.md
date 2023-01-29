@@ -3,27 +3,46 @@
 
 ## Basic usage
 
-Simply wrap a widget you wish to have layout grid rendered on top with ```LayoutGrid```. Except that you have to pass three required parameters that will indicate what layers have to be shown.
+Simply wrap a widget you wish to have layout grid rendered on top with ```LayoutGrid``` by passing it as a ```builder``` parameter. 
 
 
 ```dart
 LayoutGrid(
-    showColumns: GridConfig.showColumnsNotifier,
-    showRows: GridConfig.showRowsNotifier,
-    showGrid: GridConfig.showGridNotifier,
-    child: const MyHomePage(),
+    ...
+    builder: (context) => Scaffold(),
 )
 ```
 
-Note that you can export ```showColumns```, ```showRows``` and ```showGrid``` parameters to a separate config class just like that.
+## State management
 
-```dart
-class GridConfig {
-  static final showColumnsNotifier = ValueNotifier(false);
-  static final showRowsNotifier = ValueNotifier(false);
-  static final showGridNotifier = ValueNotifier(false);
-}
-```
+By default all of the layouts are disabled. In order to manage layout grid state you may use ```LayoutGridController``` methods which are accessible via ```builder``` context. 
+
+### Rows 
+```void LayoutGridController.of(context).showRows()``` - shows row layout
+
+```void LayoutGridController.of(context).hideRows()``` - hides row layout
+
+```void LayoutGridController.of(context).toggleRows()``` - toggles row layout visibility
+
+```bool LayoutGridController.of(context).visibleRows``` - returns current row layout visibility state 
+
+### Columns 
+```void LayoutGridController.of(context).showColumns()``` - shows column layout
+
+```void LayoutGridController.of(context).hideColumns()``` - hides column layout
+
+```void LayoutGridController.of(context).toggleColumns()``` - toggles column layout visibility
+
+```bool LayoutGridController.of(context).visibleColumns``` - returns current column layout visibility state 
+
+### Grid 
+```void LayoutGridController.of(context).showGrid()``` - shows grid layout
+
+```void LayoutGridController.of(context).hideGrid()``` - hides grid layout
+
+```void LayoutGridController.of(context).toggleGrid()``` - toggles grid layout visibility
+
+```bool LayoutGridController.of(context).visibleGrid``` - returns current grid layout visibility state 
 
 ## Available layouts
 ```figma_layout_grid``` supports three types of layout overlays - rows, columns and pixel grid.
@@ -38,13 +57,12 @@ Example usage
 ```dart
 LayoutGrid(
   ...
-  showRows: GridConfig.showRowsNotifier,
   rowsParams: const RowsParams(
     offset: 32.0,
     height: 16.0,
     gutter: 16.0,
   ),
-  child: const MyHomePage(),
+  builder: (context) => Scaffold(),
 ),
 ```
 <img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/implementation/resources/rows.png" alt="rows example image" style="width:300px;"/>
@@ -59,13 +77,12 @@ Example usage
 ```dart
 LayoutGrid(
   ...
-  showColumns: GridConfig.showColumnsNotifier,
   columnsParams: const ColumnsParams(
     count: 4,
     width: 64.0,
     margin: 32.0,
   ),
-  child: const MyHomePage(),
+  builder: (context) => Scaffold(),
 ),
 ```
 
@@ -84,8 +101,7 @@ LayoutGrid(
     size: 50.0,
     color: Colors.black26,
   ),
-  showGrid: GridConfig.showGridNotifier,
-  child: const MyHomePage(),
+  builder: (context) => Scaffold(),
 ),
 ```
 
@@ -102,7 +118,6 @@ Which translates to this piece of code
 ```dart
 LayoutGrid(
   ...
-  showRows: GridConfig.showRowsNotifier,
   rowsParams: RowsParams(
     count: 10,
     height: 12.0,
@@ -111,7 +126,7 @@ LayoutGrid(
     arrangement: RowsArragement.bottom,
     color: const Color(0xFF757975).withOpacity(0.15),
   ),
-  child: const MyHomePage(),
+  builder: (context) => Scaffold(),
 ),
 ```
 
@@ -144,7 +159,7 @@ LayoutGrid(
         top: true,
       ),
     ),
-    child: const MyHomePage(),
+    builder: (context) => Scaffold(),
 )
 ```
 
