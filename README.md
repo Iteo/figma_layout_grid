@@ -1,9 +1,9 @@
 # Figma layout grid
-```figma_layout_grid``` is a Flutter package which imitates Figma's layout grid and all its functionalities. It helps you determine whether your UI components match the design file and align properly. 
+`figma_layout_grid` is a Flutter package which imitates Figma's layout grid and all its functionalities. It helps you determine whether your UI components match the design file and align properly. 
 
 ## Basic usage
 
-Simply wrap a widget you wish to have layout grid rendered on top with ```LayoutGrid``` by passing it as a ```builder``` parameter. 
+Simply wrap a widget you wish to have layout grid rendered on top with `LayoutGrid` by passing it as a `builder` parameter. 
 
 
 ```dart
@@ -15,42 +15,42 @@ LayoutGrid(
 
 ## State management
 
-By default all of the layouts are disabled. In order to manage layout grid state you may use ```LayoutGridController``` methods which are accessible via ```builder``` context. 
+By default all of the layouts are disabled. In order to manage layout grid state you may use `LayoutGridController` methods which are accessible via `builder` context. 
 
 ### Rows 
-```void LayoutGridController.of(context).showRows()``` - shows row layout
+`void LayoutGridController.of(context).showRows()` - shows row layout
 
-```void LayoutGridController.of(context).hideRows()``` - hides row layout
+`void LayoutGridController.of(context).hideRows()` - hides row layout
 
-```void LayoutGridController.of(context).toggleRows()``` - toggles row layout visibility
+`void LayoutGridController.of(context).toggleRows()` - toggles row layout visibility
 
-```bool LayoutGridController.of(context).visibleRows``` - returns current row layout visibility state 
+`bool LayoutGridController.of(context).visibleRows` - returns current row layout visibility state 
 
 ### Columns 
-```void LayoutGridController.of(context).showColumns()``` - shows column layout
+`void LayoutGridController.of(context).showColumns()` - shows column layout
 
-```void LayoutGridController.of(context).hideColumns()``` - hides column layout
+`void LayoutGridController.of(context).hideColumns()` - hides column layout
 
-```void LayoutGridController.of(context).toggleColumns()``` - toggles column layout visibility
+`void LayoutGridController.of(context).toggleColumns()` - toggles column layout visibility
 
-```bool LayoutGridController.of(context).visibleColumns``` - returns current column layout visibility state 
+`bool LayoutGridController.of(context).visibleColumns` - returns current column layout visibility state 
 
 ### Grid 
-```void LayoutGridController.of(context).showGrid()``` - shows grid layout
+`void LayoutGridController.of(context).showGrid()` - shows grid layout
 
-```void LayoutGridController.of(context).hideGrid()``` - hides grid layout
+`void LayoutGridController.of(context).hideGrid()` - hides grid layout
 
-```void LayoutGridController.of(context).toggleGrid()``` - toggles grid layout visibility
+`void LayoutGridController.of(context).toggleGrid()` - toggles grid layout visibility
 
-```bool LayoutGridController.of(context).visibleGrid``` - returns current grid layout visibility state 
+`bool LayoutGridController.of(context).visibleGrid` - returns current grid layout visibility state 
 
 ## Available layouts
-```figma_layout_grid``` supports three types of layout overlays - rows, columns and pixel grid.
+`figma_layout_grid` supports three types of layout overlays - rows, columns and pixel grid.
 
 ### Rows
 
 Horizontal stripes with specified height, gutter, margin, offset, arrangement and color.
-There is a possibility for fixed rows count with passing desired number in a ```count``` parameter, otherwise rows are rendered dynamically due to the screen limits. 
+There is a possibility for fixed rows count with passing desired number in a `count` parameter, otherwise rows are rendered dynamically due to the screen limits. 
 
 Example usage
 
@@ -70,7 +70,7 @@ LayoutGrid(
 ### Columns
 
 Vertical stripes with specified height, gutter, margin, offset, arrangement and color.
-There is a possibility for fixed columns count with passing desired number in a ```count``` parameter, otherwise columns are rendered dynamically due to the screen limits. 
+There is a possibility for fixed columns count with passing desired number in a `count` parameter, otherwise columns are rendered dynamically due to the screen limits. 
 
 Example usage
 
@@ -136,10 +136,10 @@ And finally to the following UI.
 
 <br>
 
-There is also a possibility to enable ```SafeArea``` for a specific layout.
+There is also a possibility to enable `SafeArea` for a specific layout.
 
-Each of the three layers has optional ```SafeAreaParams``` within you can pass what SafeArea parts should be handled.
-The available options are ```top```, ```bottom```, ```left``` and ```right``` which correspond to SafeArea's parameters with the same names.
+Each of the three layers has optional `SafeAreaParams` within you can pass what SafeArea parts should be handled.
+The available options are `top`, `bottom`, `left` and `right` which correspond to SafeArea's parameters with the same names.
 
 By default SafeArea feature is disabled.
 
@@ -169,4 +169,4 @@ The above snippet will make the grid overlays avoid the device's intrusions.
 
 ## Demo
 
-Try out the example app placed in the ```example``` directory. 
+Try out the example app placed in the `example` directory. 
