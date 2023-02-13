@@ -65,7 +65,7 @@ LayoutGrid(
   builder: (context) => Scaffold(),
 ),
 ```
-<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/implementation/resources/rows.png" alt="rows example image" style="width:300px;"/>
+<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/rows.png" alt="rows example image" style="width:300px;"/>
 
 ### Columns
 
@@ -86,7 +86,7 @@ LayoutGrid(
 ),
 ```
 
-<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/implementation/resources/columns.png" alt="columns example image" style="width:300px;"/>
+<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/columns.png" alt="columns example image" style="width:300px;"/>
 
 ### Grid
 
@@ -105,13 +105,13 @@ LayoutGrid(
 ),
 ```
 
-<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/implementation/resources/grid.png" alt="grid example image" style="width:300px;"/>
+<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/grid.png" alt="grid example image" style="width:300px;"/>
 
 ## Parametrization
 
 As this package mimics Figma's layout grid features you can directly transfer desired outcome into corresponding parameters. The following example shows columns grid set with count = 10, height = 12, gutter = 12, offset = 24, bottom alignment and some custom color.
 
-<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/implementation/resources/figma_config.png" alt="figma layout configuration"/>
+<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/figma_config.png" alt="figma layout configuration"/>
 
 Which translates to this piece of code
 
@@ -132,7 +132,7 @@ LayoutGrid(
 
 And finally to the following UI.
 
-<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/implementation/resources/custom_config.png" alt="custom config" style="width:300px;"/>
+<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/custom_config.png" alt="custom config" style="width:300px;"/>
 
 <br>
 
@@ -165,7 +165,7 @@ LayoutGrid(
 
 The above snippet will make the grid overlays avoid the device's intrusions.
 
-<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/implementation/resources/safe_area.png" alt="safe area config" style="width:300px;"/>
+<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/safe_area.png" alt="safe area config" style="width:300px;"/>
 
 ## Demo
 
