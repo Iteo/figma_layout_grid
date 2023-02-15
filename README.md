@@ -13,6 +13,69 @@ LayoutGrid(
 )
 ```
 
+## Available layouts
+This package supports three types of layout overlays - rows, columns and pixel grid.
+
+### Rows
+
+Horizontal stripes with specified height, gutter, margin, offset, arrangement and color.
+There is a possibility for fixed rows count with passing desired number in a `count` parameter, otherwise rows are rendered dynamically due to the screen limits. 
+
+Example usage
+
+```dart
+LayoutGrid(
+  ...
+  rowsParams: const RowsParams(
+    offset: 32.0,
+    height: 16.0,
+    gutter: 16.0,
+  ),
+  builder: (context) => Scaffold(),
+),
+```
+<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/rows.png" alt="rows example image" width="300"/>
+
+### Columns
+
+Vertical stripes with specified height, gutter, margin, offset, arrangement and color.
+There is a possibility for fixed columns count with passing desired number in a `count` parameter, otherwise columns are rendered dynamically due to the screen limits. 
+
+Example usage
+
+```dart
+LayoutGrid(
+  ...
+  columnsParams: const ColumnsParams(
+    count: 4,
+    width: 64.0,
+    margin: 32.0,
+  ),
+  builder: (context) => Scaffold(),
+),
+```
+
+<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/columns.png" alt="columns example image" width="300"/>
+
+### Grid
+
+Square pixel grid with fixed spacing and color. The thickness of a grid is set to 1.
+
+Example usage
+
+```dart
+LayoutGrid(
+  ...
+  gridParams: const GridParams(
+    size: 50.0,
+    color: Colors.black26,
+  ),
+  builder: (context) => Scaffold(),
+),
+```
+
+<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/grid.png" alt="grid example image" width="300"/>
+
 ## State management
 
 By default all of the layouts are disabled. In order to manage layout grid state you may use `LayoutGridController` methods which are accessible via `builder` context. 
@@ -44,69 +107,6 @@ By default all of the layouts are disabled. In order to manage layout grid state
 
 `bool LayoutGridController.of(context).visibleGrid` - returns current grid layout visibility state 
 
-## Available layouts
-`figma_layout_grid` supports three types of layout overlays - rows, columns and pixel grid.
-
-### Rows
-
-Horizontal stripes with specified height, gutter, margin, offset, arrangement and color.
-There is a possibility for fixed rows count with passing desired number in a `count` parameter, otherwise rows are rendered dynamically due to the screen limits. 
-
-Example usage
-
-```dart
-LayoutGrid(
-  ...
-  rowsParams: const RowsParams(
-    offset: 32.0,
-    height: 16.0,
-    gutter: 16.0,
-  ),
-  builder: (context) => Scaffold(),
-),
-```
-<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/rows.png" alt="rows example image" style="width:300px;"/>
-
-### Columns
-
-Vertical stripes with specified height, gutter, margin, offset, arrangement and color.
-There is a possibility for fixed columns count with passing desired number in a `count` parameter, otherwise columns are rendered dynamically due to the screen limits. 
-
-Example usage
-
-```dart
-LayoutGrid(
-  ...
-  columnsParams: const ColumnsParams(
-    count: 4,
-    width: 64.0,
-    margin: 32.0,
-  ),
-  builder: (context) => Scaffold(),
-),
-```
-
-<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/columns.png" alt="columns example image" style="width:300px;"/>
-
-### Grid
-
-Square pixel grid with fixed spacing and color. The thickness of a grid is set to 1.
-
-Example usage
-
-```dart
-LayoutGrid(
-  ...
-  gridParams: const GridParams(
-    size: 50.0,
-    color: Colors.black26,
-  ),
-  builder: (context) => Scaffold(),
-),
-```
-
-<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/grid.png" alt="grid example image" style="width:300px;"/>
-
 ## Parametrization
 
 As this package mimics Figma's layout grid features you can directly transfer desired outcome into corresponding parameters. The following example shows columns grid set with count = 10, height = 12, gutter = 12, offset = 24, bottom alignment and some custom color.
@@ -132,7 +132,7 @@ LayoutGrid(
 
 And finally to the following UI.
 
-<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/custom_config.png" alt="custom config" style="width:300px;"/>
+<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/custom_config.png" alt="custom config" width="300"/>
 
 <br>
 
@@ -165,7 +165,7 @@ LayoutGrid(
 
 The above snippet will make the grid overlays avoid the device's intrusions.
 
-<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/safe_area.png" alt="safe area config" style="width:300px;"/>
+<img src="https://raw.githubusercontent.com/Iteo/figma_layout_grid/main/resources/safe_area.png" alt="safe area config" width="300"/>
 
 ## Demo
 
