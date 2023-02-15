@@ -1,4 +1,7 @@
 # Figma layout grid
+
+[![pub package](https://img.shields.io/pub/v/figma_layout_grid.svg)](https://pub.dartlang.org/packages/figma_layout_grid) &nbsp;
+
 `figma_layout_grid` is a Flutter package which imitates Figma's layout grid and all its functionalities. It helps you determine whether your UI components match the design file and align properly. 
 
 ## Basic usage
