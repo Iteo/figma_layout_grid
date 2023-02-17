@@ -1,6 +1,6 @@
 name: figma_layout_grid
 description: Visual aid grid system that supports Figma's layout grid features
-version: 0.1.1
+version: 0.2.0
 repository: https://github.com/Iteo/figma_layout_grid
 homepage: https://github.com/Iteo/figma_layout_grid
 
