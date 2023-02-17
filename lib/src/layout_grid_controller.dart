@@ -77,6 +77,6 @@ class LayoutGridScope extends InheritedWidget {
 
   @override
   bool updateShouldNotify(LayoutGridScope oldWidget) {
-    return controller != oldWidget.controller;
+    return controller != oldWidget.controller || child != oldWidget.child;
   }
 }
