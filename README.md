@@ -6,7 +6,7 @@
 
 ## Basic usage
 
-Simply wrap a widget you wish to have layout grid rendered on top with `LayoutGrid` by passing it as a `builder` parameter. 
+Wrap a widget with `LayoutGrid` in order to render a layout grid on top of it.
 
 
 ```dart
@@ -172,4 +172,4 @@ The above snippet will make the grid overlays avoid the device's intrusions.
 
 ## Demo
 
-Try out the example app placed in the `example` directory. 
+Try out the [example app](https://pub.dev/packages/figma_layout_grid/example). 

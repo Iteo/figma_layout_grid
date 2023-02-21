@@ -32,7 +32,7 @@ class LayoutGridNotifier extends ChangeNotifier {
 
   void hideColumns() {
     _visibleColumns = false;
-    // notifyListeners();
+    notifyListeners();
   }
 
   void toggleColumns() {
