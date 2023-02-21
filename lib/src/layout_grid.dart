@@ -25,33 +25,33 @@ class LayoutGrid extends StatefulWidget {
 }
 
 class _LayoutGridState extends State<LayoutGrid> {
-  late LayoutGridController controller;
+  late LayoutGridNotifier notifier;
 
   @override
   void initState() {
     super.initState();
-    controller = LayoutGridController();
-    controller.addListener(() {
+    notifier = LayoutGridNotifier();
+    notifier.addListener(() {
       setState(() {});
     });
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    notifier.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return LayoutGridScope(
-      controller: controller,
+    return LayoutGridController(
+      notifier: notifier,
       child: Builder(
-        builder: (innerContext) {
+        builder: (context) {
           return Stack(
             children: [
               SizedBox.expand(
-                child: widget.builder(innerContext),
+                child: widget.builder(context),
               ),
               SafeArea(
                 left: widget.rowsParams.safeAreaParams.left,
@@ -59,7 +59,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.rowsParams.safeAreaParams.top,
                 right: widget.rowsParams.safeAreaParams.right,
                 child: Rows(
-                  visible: LayoutGridController.of(innerContext).visibleRows,
+                  visible: LayoutGridController.of(context).visibleRows,
                   params: widget.rowsParams,
                 ),
               ),
@@ -69,7 +69,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.columnsParams.safeAreaParams.top,
                 right: widget.columnsParams.safeAreaParams.right,
                 child: Columns(
-                  visible: LayoutGridController.of(innerContext).visibleColumns,
+                  visible: LayoutGridController.of(context).visibleColumns,
                   params: widget.columnsParams,
                 ),
               ),
@@ -79,7 +79,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.gridParams.safeAreaParams.top,
                 right: widget.gridParams.safeAreaParams.right,
                 child: Grid(
-                  visible: LayoutGridController.of(innerContext).visibleGrid,
+                  visible: LayoutGridController.of(context).visibleGrid,
                   params: widget.gridParams,
                 ),
               ),
