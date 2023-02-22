@@ -62,14 +62,4 @@ class LayoutGridController extends InheritedNotifier<LayoutGridNotifier> {
     required LayoutGridNotifier super.notifier,
     required super.child,
   });
-
-  static LayoutGridNotifier of(BuildContext context) {
-    final notifier = context
-        .dependOnInheritedWidgetOfExactType<LayoutGridController>()
-        ?.notifier;
-    if (notifier != null) {
-      return notifier;
-    }
-    throw UnimplementedError();
-  }
 }

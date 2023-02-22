@@ -22,6 +22,16 @@ class LayoutGrid extends StatefulWidget {
 
   @override
   State<LayoutGrid> createState() => _LayoutGridState();
+
+  static LayoutGridNotifier of(BuildContext context) {
+    final notifier = context
+        .dependOnInheritedWidgetOfExactType<LayoutGridController>()
+        ?.notifier;
+    if (notifier != null) {
+      return notifier;
+    }
+    throw UnimplementedError();
+  }
 }
 
 class _LayoutGridState extends State<LayoutGrid> {
@@ -59,7 +69,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.rowsParams.safeAreaParams.top,
                 right: widget.rowsParams.safeAreaParams.right,
                 child: Rows(
-                  visible: LayoutGridController.of(context).visibleRows,
+                  visible: LayoutGrid.of(context).visibleRows,
                   params: widget.rowsParams,
                 ),
               ),
@@ -69,7 +79,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.columnsParams.safeAreaParams.top,
                 right: widget.columnsParams.safeAreaParams.right,
                 child: Columns(
-                  visible: LayoutGridController.of(context).visibleColumns,
+                  visible: LayoutGrid.of(context).visibleColumns,
                   params: widget.columnsParams,
                 ),
               ),
@@ -79,7 +89,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.gridParams.safeAreaParams.top,
                 right: widget.gridParams.safeAreaParams.right,
                 child: Grid(
-                  visible: LayoutGridController.of(context).visibleGrid,
+                  visible: LayoutGrid.of(context).visibleGrid,
                   params: widget.gridParams,
                 ),
               ),
