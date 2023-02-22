@@ -12,14 +12,11 @@ class LayoutGrid extends StatefulWidget {
     this.columnsParams = const ColumnsParams(),
     this.rowsParams = const RowsParams(),
     this.gridParams = const GridParams(),
-    this.safeArea = false,
   });
 
   final ColumnsParams columnsParams;
   final RowsParams rowsParams;
   final GridParams gridParams;
-
-  final bool safeArea;
 
   final Widget Function(BuildContext context) builder;
 
@@ -57,30 +54,30 @@ class _LayoutGridState extends State<LayoutGrid> {
                 child: widget.builder(innerContext),
               ),
               SafeArea(
-                left: widget.safeArea,
-                bottom: widget.safeArea,
-                top: widget.safeArea,
-                right: widget.safeArea,
+                left: widget.rowsParams.safeAreaParams.left,
+                bottom: widget.rowsParams.safeAreaParams.bottom,
+                top: widget.rowsParams.safeAreaParams.top,
+                right: widget.rowsParams.safeAreaParams.right,
                 child: Rows(
                   visible: LayoutGridController.of(innerContext).visibleRows,
                   params: widget.rowsParams,
                 ),
               ),
               SafeArea(
-                left: widget.safeArea,
-                bottom: widget.safeArea,
-                top: widget.safeArea,
-                right: widget.safeArea,
+                left: widget.columnsParams.safeAreaParams.left,
+                bottom: widget.columnsParams.safeAreaParams.bottom,
+                top: widget.columnsParams.safeAreaParams.top,
+                right: widget.columnsParams.safeAreaParams.right,
                 child: Columns(
                   visible: LayoutGridController.of(innerContext).visibleColumns,
                   params: widget.columnsParams,
                 ),
               ),
               SafeArea(
-                left: widget.safeArea,
-                bottom: widget.safeArea,
-                top: widget.safeArea,
-                right: widget.safeArea,
+                left: widget.gridParams.safeAreaParams.left,
+                bottom: widget.gridParams.safeAreaParams.bottom,
+                top: widget.gridParams.safeAreaParams.top,
+                right: widget.gridParams.safeAreaParams.right,
                 child: Grid(
                   visible: LayoutGridController.of(innerContext).visibleGrid,
                   params: widget.gridParams,
