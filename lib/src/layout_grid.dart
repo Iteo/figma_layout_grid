@@ -6,19 +6,24 @@ import 'package:figma_layout_grid/src/rows.dart';
 import 'package:flutter/material.dart';
 
 class LayoutGrid extends StatefulWidget {
-  const LayoutGrid({
+  LayoutGrid({
     super.key,
     required this.builder,
     this.columnsParams = const ColumnsParams(),
     this.rowsParams = const RowsParams(),
     this.gridParams = const GridParams(),
-  });
+    LayoutGridNotifier? notifier,
+  }) {
+    this.notifier = notifier ?? LayoutGridNotifier();
+  }
 
   final ColumnsParams columnsParams;
   final RowsParams rowsParams;
   final GridParams gridParams;
 
   final Widget Function(BuildContext context) builder;
+
+  late final LayoutGridNotifier notifier;
 
   @override
   State<LayoutGrid> createState() => _LayoutGridState();
@@ -35,27 +40,33 @@ class LayoutGrid extends StatefulWidget {
 }
 
 class _LayoutGridState extends State<LayoutGrid> {
-  late LayoutGridNotifier notifier;
-
   @override
   void initState() {
     super.initState();
-    notifier = LayoutGridNotifier();
-    notifier.addListener(() {
+    widget.notifier.addListener(() {
       setState(() {});
     });
   }
 
   @override
+  void didUpdateWidget(covariant LayoutGrid oldWidget) {
+    oldWidget.notifier.dispose();
+    widget.notifier.addListener(() {
+      setState(() {});
+    });
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   void dispose() {
-    notifier.dispose();
+    widget.notifier.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return LayoutGridController(
-      notifier: notifier,
+      notifier: widget.notifier,
       child: Builder(
         builder: (context) {
           return Stack(
