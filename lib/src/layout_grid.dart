@@ -35,7 +35,8 @@ class LayoutGrid extends StatefulWidget {
     if (notifier != null) {
       return notifier;
     }
-    throw UnimplementedError();
+    throw FlutterError(
+        'Build context passed to the of method does not contain the specified widget. Ensure that the widget tree contains a widget of the specified type');
   }
 }
 
