@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-class LayoutGridController extends ChangeNotifier {
+class LayoutGridNotifier extends ChangeNotifier {
   bool _visibleRows = false;
   bool get visibleRows => _visibleRows;
 
@@ -54,29 +54,12 @@ class LayoutGridController extends ChangeNotifier {
     _visibleGrid = !_visibleGrid;
     notifyListeners();
   }
-
-  static LayoutGridController of(BuildContext context) {
-    final controller = context
-        .dependOnInheritedWidgetOfExactType<LayoutGridScope>()
-        ?.controller;
-    if (controller != null) {
-      return controller;
-    }
-    throw UnimplementedError();
-  }
 }
 
-class LayoutGridScope extends InheritedWidget {
-  const LayoutGridScope({
+class LayoutGridController extends InheritedNotifier<LayoutGridNotifier> {
+  const LayoutGridController({
     super.key,
-    required this.controller,
+    required LayoutGridNotifier super.notifier,
     required super.child,
   });
-
-  final LayoutGridController controller;
-
-  @override
-  bool updateShouldNotify(LayoutGridScope oldWidget) {
-    return controller != oldWidget.controller;
-  }
 }

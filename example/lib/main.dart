@@ -30,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return LayoutGrid(
+      // Pass desired layout parameters or leave it empty if you wish to use the default ones
       gridParams: const GridParams(size: 32),
       rowsParams: const RowsParams(
         safeAreaParams: SafeAreaParams(
@@ -59,9 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     'Rows',
                   ),
                   Switch(
-                    value: LayoutGridController.of(context).visibleRows,
+                    value: LayoutGrid.of(context).visibleRows,
                     onChanged: (_) {
-                      LayoutGridController.of(context).toggleRows();
+                      LayoutGrid.of(context).toggleRows();
+                      // No need to use setState here, since InheritedNotifier already handles that
                     },
                   ),
                 ],
@@ -73,9 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     'Columns',
                   ),
                   Switch(
-                    value: LayoutGridController.of(context).visibleColumns,
+                    value: LayoutGrid.of(context).visibleColumns,
                     onChanged: (_) {
-                      LayoutGridController.of(context).toggleColumns();
+                      LayoutGrid.of(context).toggleColumns();
                     },
                   ),
                 ],
@@ -87,9 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     'Grid',
                   ),
                   Switch(
-                    value: LayoutGridController.of(context).visibleGrid,
+                    value: LayoutGrid.of(context).visibleGrid,
                     onChanged: (_) {
-                      LayoutGridController.of(context).toggleGrid();
+                      LayoutGrid.of(context).toggleGrid();
                     },
                   ),
                 ],

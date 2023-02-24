@@ -6,7 +6,7 @@
 
 ## Basic usage
 
-Simply wrap a widget you wish to have layout grid rendered on top with `LayoutGrid` by passing it as a `builder` parameter. 
+Wrap a widget with `LayoutGrid` in order to render a layout grid on top of it.
 
 
 ```dart
@@ -81,34 +81,34 @@ LayoutGrid(
 
 ## State management
 
-By default all of the layouts are disabled. In order to manage layout grid state you may use `LayoutGridController` methods which are accessible via `builder` context. 
+By default all of the layouts are disabled. In order to manage layout grid state you may use `LayoutGrid` methods which are accessible via `builder` context. 
 
 ### Rows 
-`void LayoutGridController.of(context).showRows()` - shows row layout
+`void LayoutGrid.of(context).showRows()` - shows row layout
 
-`void LayoutGridController.of(context).hideRows()` - hides row layout
+`void LayoutGrid.of(context).hideRows()` - hides row layout
 
-`void LayoutGridController.of(context).toggleRows()` - toggles row layout visibility
+`void LayoutGrid.of(context).toggleRows()` - toggles row layout visibility
 
-`bool LayoutGridController.of(context).visibleRows` - returns current row layout visibility state 
+`bool LayoutGrid.of(context).visibleRows` - returns current row layout visibility state 
 
 ### Columns 
-`void LayoutGridController.of(context).showColumns()` - shows column layout
+`void LayoutGrid.of(context).showColumns()` - shows column layout
 
-`void LayoutGridController.of(context).hideColumns()` - hides column layout
+`void LayoutGrid.of(context).hideColumns()` - hides column layout
 
-`void LayoutGridController.of(context).toggleColumns()` - toggles column layout visibility
+`void LayoutGrid.of(context).toggleColumns()` - toggles column layout visibility
 
-`bool LayoutGridController.of(context).visibleColumns` - returns current column layout visibility state 
+`bool LayoutGrid.of(context).visibleColumns` - returns current column layout visibility state 
 
 ### Grid 
-`void LayoutGridController.of(context).showGrid()` - shows grid layout
+`void LayoutGrid.of(context).showGrid()` - shows grid layout
 
-`void LayoutGridController.of(context).hideGrid()` - hides grid layout
+`void LayoutGrid.of(context).hideGrid()` - hides grid layout
 
-`void LayoutGridController.of(context).toggleGrid()` - toggles grid layout visibility
+`void LayoutGrid.of(context).toggleGrid()` - toggles grid layout visibility
 
-`bool LayoutGridController.of(context).visibleGrid` - returns current grid layout visibility state 
+`bool LayoutGrid.of(context).visibleGrid` - returns current grid layout visibility state 
 
 ## Parametrization
 
@@ -172,4 +172,4 @@ The above snippet will make the grid overlays avoid the device's intrusions.
 
 ## Demo
 
-Try out the example app placed in the `example` directory. 
+Try out the [example app](https://pub.dev/packages/figma_layout_grid/example). 

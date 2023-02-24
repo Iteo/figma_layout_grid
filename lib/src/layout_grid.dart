@@ -6,13 +6,16 @@ import 'package:figma_layout_grid/src/rows.dart';
 import 'package:flutter/material.dart';
 
 class LayoutGrid extends StatefulWidget {
-  const LayoutGrid({
+  LayoutGrid({
     super.key,
     required this.builder,
     this.columnsParams = const ColumnsParams(),
     this.rowsParams = const RowsParams(),
     this.gridParams = const GridParams(),
-  });
+    LayoutGridNotifier? notifier,
+  }) {
+    this.notifier = notifier ?? LayoutGridNotifier();
+  }
 
   final ColumnsParams columnsParams;
   final RowsParams rowsParams;
@@ -20,38 +23,57 @@ class LayoutGrid extends StatefulWidget {
 
   final Widget Function(BuildContext context) builder;
 
+  late final LayoutGridNotifier notifier;
+
   @override
   State<LayoutGrid> createState() => _LayoutGridState();
+
+  static LayoutGridNotifier of(BuildContext context) {
+    final notifier = context
+        .dependOnInheritedWidgetOfExactType<LayoutGridController>()
+        ?.notifier;
+    if (notifier != null) {
+      return notifier;
+    }
+    throw FlutterError(
+        'Build context passed to the of method does not contain the specified widget. Ensure that the widget tree contains a widget of the specified type');
+  }
 }
 
 class _LayoutGridState extends State<LayoutGrid> {
-  late LayoutGridController controller;
-
   @override
   void initState() {
     super.initState();
-    controller = LayoutGridController();
-    controller.addListener(() {
-      setState(() {});
-    });
+    widget.notifier.addListener(_rebuild);
+  }
+
+  @override
+  void didUpdateWidget(covariant LayoutGrid oldWidget) {
+    oldWidget.notifier.removeListener(_rebuild);
+    widget.notifier.addListener(_rebuild);
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    widget.notifier.dispose();
     super.dispose();
+  }
+
+  void _rebuild() {
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return LayoutGridScope(
-      controller: controller,
+    return LayoutGridController(
+      notifier: widget.notifier,
       child: Builder(
-        builder: (innerContext) {
+        builder: (context) {
           return Stack(
             children: [
               SizedBox.expand(
-                child: widget.builder(innerContext),
+                child: widget.builder(context),
               ),
               SafeArea(
                 left: widget.rowsParams.safeAreaParams.left,
@@ -59,7 +81,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.rowsParams.safeAreaParams.top,
                 right: widget.rowsParams.safeAreaParams.right,
                 child: Rows(
-                  visible: LayoutGridController.of(innerContext).visibleRows,
+                  visible: LayoutGrid.of(context).visibleRows,
                   params: widget.rowsParams,
                 ),
               ),
@@ -69,7 +91,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.columnsParams.safeAreaParams.top,
                 right: widget.columnsParams.safeAreaParams.right,
                 child: Columns(
-                  visible: LayoutGridController.of(innerContext).visibleColumns,
+                  visible: LayoutGrid.of(context).visibleColumns,
                   params: widget.columnsParams,
                 ),
               ),
@@ -79,7 +101,7 @@ class _LayoutGridState extends State<LayoutGrid> {
                 top: widget.gridParams.safeAreaParams.top,
                 right: widget.gridParams.safeAreaParams.right,
                 child: Grid(
-                  visible: LayoutGridController.of(innerContext).visibleGrid,
+                  visible: LayoutGrid.of(context).visibleGrid,
                   params: widget.gridParams,
                 ),
               ),

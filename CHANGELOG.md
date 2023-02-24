@@ -5,3 +5,7 @@
 ## 0.1.1
 
 * Update readme
+
+## 0.2.0
+
+* Automatically refresh state after toggling a layout
