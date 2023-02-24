@@ -44,17 +44,13 @@ class _LayoutGridState extends State<LayoutGrid> {
   @override
   void initState() {
     super.initState();
-    widget.notifier.addListener(() {
-      setState(() {});
-    });
+    widget.notifier.addListener(_rebuild);
   }
 
   @override
   void didUpdateWidget(covariant LayoutGrid oldWidget) {
-    oldWidget.notifier.dispose();
-    widget.notifier.addListener(() {
-      setState(() {});
-    });
+    oldWidget.notifier.removeListener(_rebuild);
+    widget.notifier.addListener(_rebuild);
     super.didUpdateWidget(oldWidget);
   }
 
@@ -62,6 +58,10 @@ class _LayoutGridState extends State<LayoutGrid> {
   void dispose() {
     widget.notifier.dispose();
     super.dispose();
+  }
+
+  void _rebuild() {
+    setState(() {});
   }
 
   @override
