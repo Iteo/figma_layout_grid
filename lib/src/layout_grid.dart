@@ -12,9 +12,9 @@ class LayoutGrid extends StatefulWidget {
     this.columnsParams = const ColumnsParams(),
     this.rowsParams = const RowsParams(),
     this.gridParams = const GridParams(),
-    LayoutGridNotifier? notifier,
+    LayoutGridController? controller,
   }) {
-    this.notifier = notifier ?? LayoutGridNotifier();
+    this.controller = controller ?? LayoutGridController();
   }
 
   final ColumnsParams columnsParams;
@@ -23,14 +23,14 @@ class LayoutGrid extends StatefulWidget {
 
   final Widget Function(BuildContext context) builder;
 
-  late final LayoutGridNotifier notifier;
+  late final LayoutGridController controller;
 
   @override
   State<LayoutGrid> createState() => _LayoutGridState();
 
-  static LayoutGridNotifier of(BuildContext context) {
+  static LayoutGridController of(BuildContext context) {
     final notifier = context
-        .dependOnInheritedWidgetOfExactType<LayoutGridController>()
+        .dependOnInheritedWidgetOfExactType<LayoutGridNotifier>()
         ?.notifier;
     if (notifier != null) {
       return notifier;
@@ -42,32 +42,15 @@ class LayoutGrid extends StatefulWidget {
 
 class _LayoutGridState extends State<LayoutGrid> {
   @override
-  void initState() {
-    super.initState();
-    widget.notifier.addListener(_rebuild);
-  }
-
-  @override
-  void didUpdateWidget(covariant LayoutGrid oldWidget) {
-    oldWidget.notifier.removeListener(_rebuild);
-    widget.notifier.addListener(_rebuild);
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   void dispose() {
-    widget.notifier.dispose();
+    widget.controller.dispose();
     super.dispose();
-  }
-
-  void _rebuild() {
-    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return LayoutGridController(
-      notifier: widget.notifier,
+    return LayoutGridNotifier(
+      controller: widget.controller,
       child: Builder(
         builder: (context) {
           return Stack(
