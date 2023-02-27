@@ -28,6 +28,11 @@ class LayoutGrid extends StatefulWidget {
   @override
   State<LayoutGrid> createState() => _LayoutGridState();
 
+  /// This method allows to access and modify [LayoutGrid] parameters
+  /// over [BuildContext] within any place in a project.
+  ///
+  /// If context passed to the this method does not contain the specified widget,
+  /// it will throw an error.
   static LayoutGridController of(BuildContext context) {
     final notifier = context
         .dependOnInheritedWidgetOfExactType<LayoutGridNotifier>()

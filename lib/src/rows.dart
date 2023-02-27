@@ -8,7 +8,10 @@ class Rows extends StatelessWidget {
     required this.params,
   });
 
+  /// Specifies the visibility of row layout
   final bool visible;
+
+  /// Rows visual parameters, see more at [RowsParams].
   final RowsParams params;
 
   @override
@@ -96,7 +99,7 @@ class _SpecifiedCountRows extends StatelessWidget {
     List<Widget> children = [];
 
     for (int i = 0; i < params.count!; i++) {
-      if (params.arrangement == RowsArragement.stretch) {
+      if (params.arrangement == RowsArrangement.stretch) {
         children.add(
           Flexible(
             child: _Row(
@@ -134,32 +137,32 @@ class _SpecifiedCountRows extends StatelessWidget {
 
   MainAxisAlignment _mapArrangement() {
     switch (params.arrangement) {
-      case RowsArragement.stretch:
+      case RowsArrangement.stretch:
         return MainAxisAlignment.spaceBetween;
-      case RowsArragement.top:
+      case RowsArrangement.top:
         return MainAxisAlignment.start;
-      case RowsArragement.bottom:
+      case RowsArrangement.bottom:
         return MainAxisAlignment.end;
-      case RowsArragement.center:
+      case RowsArrangement.center:
         return MainAxisAlignment.center;
     }
   }
 
   EdgeInsets _mapPadding() {
     switch (params.arrangement) {
-      case RowsArragement.stretch:
+      case RowsArrangement.stretch:
         return EdgeInsets.symmetric(
           vertical: params.margin,
         );
-      case RowsArragement.top:
+      case RowsArrangement.top:
         return EdgeInsets.only(
           top: params.offset,
         );
-      case RowsArragement.bottom:
+      case RowsArrangement.bottom:
         return EdgeInsets.only(
           bottom: params.offset,
         );
-      case RowsArragement.center:
+      case RowsArrangement.center:
         return EdgeInsets.zero;
     }
   }

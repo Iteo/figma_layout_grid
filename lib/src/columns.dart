@@ -8,7 +8,10 @@ class Columns extends StatelessWidget {
     required this.params,
   });
 
+  /// Specifies the visibility of column layout
   final bool visible;
+
+  /// Columns visual parameters, see more at [ColumnsParams].
   final ColumnsParams params;
 
   @override
@@ -94,7 +97,7 @@ class _SpecifiedCountColumns extends StatelessWidget {
     List<Widget> children = [];
 
     for (int i = 0; i < params.count!; i++) {
-      if (params.arrangement == ColumnsArragement.stretch) {
+      if (params.arrangement == ColumnsArrangement.stretch) {
         children.add(
           Flexible(
             child: _Column(
@@ -132,32 +135,32 @@ class _SpecifiedCountColumns extends StatelessWidget {
 
   MainAxisAlignment _mapArrangement() {
     switch (params.arrangement) {
-      case ColumnsArragement.stretch:
+      case ColumnsArrangement.stretch:
         return MainAxisAlignment.spaceBetween;
-      case ColumnsArragement.left:
+      case ColumnsArrangement.left:
         return MainAxisAlignment.start;
-      case ColumnsArragement.right:
+      case ColumnsArrangement.right:
         return MainAxisAlignment.end;
-      case ColumnsArragement.center:
+      case ColumnsArrangement.center:
         return MainAxisAlignment.center;
     }
   }
 
   EdgeInsets _mapPadding() {
     switch (params.arrangement) {
-      case ColumnsArragement.stretch:
+      case ColumnsArrangement.stretch:
         return EdgeInsets.symmetric(
           horizontal: params.margin,
         );
-      case ColumnsArragement.left:
+      case ColumnsArrangement.left:
         return EdgeInsets.only(
           left: params.offset,
         );
-      case ColumnsArragement.right:
+      case ColumnsArrangement.right:
         return EdgeInsets.only(
           right: params.offset,
         );
-      case ColumnsArragement.center:
+      case ColumnsArrangement.center:
         return EdgeInsets.zero;
     }
   }
