@@ -9,3 +9,7 @@
 ## 0.2.0
 
 * Automatically refresh state after toggling a layout
+
+## 0.2.1
+
+* Provide documentation
