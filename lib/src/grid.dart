@@ -8,7 +8,10 @@ class Grid extends StatelessWidget {
     required this.params,
   });
 
+  /// Specifies the visibility of row layout
   final bool visible;
+
+  /// Rows visual parameters, see more at [GridParams].
   final GridParams params;
 
   @override
