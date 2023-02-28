@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-class LayoutGridNotifier extends ChangeNotifier {
+class LayoutGridController extends ChangeNotifier {
   bool _visibleRows = false;
   bool get visibleRows => _visibleRows;
 
@@ -56,10 +56,10 @@ class LayoutGridNotifier extends ChangeNotifier {
   }
 }
 
-class LayoutGridController extends InheritedNotifier<LayoutGridNotifier> {
-  const LayoutGridController({
+class LayoutGridNotifier extends InheritedNotifier<LayoutGridController> {
+  const LayoutGridNotifier({
     super.key,
-    required LayoutGridNotifier super.notifier,
+    required LayoutGridController controller,
     required super.child,
-  });
+  }) : super(notifier: controller);
 }
