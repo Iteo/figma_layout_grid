@@ -13,3 +13,7 @@
 ## 0.2.1
 
 * Provide documentation
+
+## 0.3.0
+
+* Dispose only internally created controller
