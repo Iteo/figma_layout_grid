@@ -5,6 +5,8 @@ import 'package:figma_layout_grid/src/params.dart';
 import 'package:figma_layout_grid/src/rows.dart';
 import 'package:flutter/material.dart';
 
+class _DefaultLayoutGridController extends LayoutGridController {}
+
 class LayoutGrid extends StatefulWidget {
   LayoutGrid({
     super.key,
@@ -14,7 +16,7 @@ class LayoutGrid extends StatefulWidget {
     this.gridParams = const GridParams(),
     LayoutGridController? controller,
   }) {
-    this.controller = controller ?? LayoutGridController();
+    this.controller = controller ?? _DefaultLayoutGridController();
   }
 
   final ColumnsParams columnsParams;
@@ -48,7 +50,9 @@ class LayoutGrid extends StatefulWidget {
 class _LayoutGridState extends State<LayoutGrid> {
   @override
   void dispose() {
-    widget.controller.dispose();
+    if (widget.controller is _DefaultLayoutGridController) {
+      widget.controller.dispose();
+    }
     super.dispose();
   }
 
