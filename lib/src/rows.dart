@@ -24,6 +24,7 @@ class Rows extends StatelessWidget {
     }
 
     return SizedBox.expand(
+      key: const Key('rows'),
       child: IgnorePointer(
         child: countSpecified
             ? _SpecifiedCountRows(
@@ -180,6 +181,7 @@ class _Row extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: color != null ? const Key('row') : const Key('row-gap'),
       height: height,
       width: double.infinity,
       color: color,

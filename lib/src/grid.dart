@@ -21,6 +21,7 @@ class Grid extends StatelessWidget {
     }
 
     return SizedBox.expand(
+      key: const Key('grid'),
       child: IgnorePointer(
         child: GridPaper(
           color: params.color,

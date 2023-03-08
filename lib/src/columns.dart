@@ -24,6 +24,7 @@ class Columns extends StatelessWidget {
     }
 
     return SizedBox.expand(
+      key: const Key('columns'),
       child: IgnorePointer(
         child: countSpecified
             ? _SpecifiedCountColumns(
@@ -178,6 +179,7 @@ class _Column extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: color != null ? const Key('column') : const Key('column-gap'),
       height: double.infinity,
       width: width,
       color: color,
