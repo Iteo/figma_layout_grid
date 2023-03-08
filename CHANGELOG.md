@@ -17,3 +17,7 @@
 ## 0.3.0
 
 * Dispose only internally created controller
+
+## 0.3.1
+
+* Add tests
