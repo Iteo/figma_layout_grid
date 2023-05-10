@@ -21,3 +21,7 @@
 ## 0.3.1
 
 * Add tests
+
+## 0.3.2
+
+* Update dependencies
